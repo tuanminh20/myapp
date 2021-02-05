@@ -7,9 +7,10 @@ Things you may want to cover:
 
 * Ruby version
 ```
-$ rbenv install 2.7.1
+$ rbenv install 2.7.2
 $ ruby -v
-ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c)
+ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-darwin20]
+$ gem install bundler -v 2.2.8
 ```
 
 * Node version
