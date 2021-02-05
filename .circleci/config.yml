@@ -1,0 +1,19 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@0.1.2 
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7.2-node
+    executor: ruby/default
+    steps:
+      - checkout
+      - run: ruby -v
+      - run: node -v
+      - run: npm -v
+      - run: yarn -v
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - ruby/bundle-install
