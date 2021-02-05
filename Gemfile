@@ -54,6 +54,8 @@ group :development, :test do
   gem 'awesome_print'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rspec'
+  gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 4.0.2'
   gem 'shoulda-matchers', '~> 4.0'
 end

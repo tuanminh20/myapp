@@ -1,19 +1,57 @@
-version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2 
-
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.7.2-node
-    executor: ruby/default
+      - image: 'circleci/ruby:2.7.2-node'
     steps:
       - checkout
-      - run: ruby -v
-      - run: node -v
-      - run: npm -v
-      - run: yarn -v
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+  checking:
+    docker:
+      - image: 'circleci/ruby:2.7.2-node'
+    steps:
+      - checkout
+      - ruby/install-deps
+      - ruby/rubocop-check:
+          format: progress
+          label: Inspecting with Rubocop
+  test:
+    docker:
+      - image: 'circleci/ruby:2.7.2-node'
+      - image: 'circleci/mysql:latest'
+        command: [--default-authentication-plugin=mysql_native_password]
+        environment:
+          MYSQL_ROOT_PASSWORD: my-secret-pw
+          MYSQL_DATABASE: seller_test
+          MYSQL_USER: ndh
+          MYSQL_PASSWORD: ndhndhteam
+
+    environment:
+      BUNDLE_JOBS: '3'
+      BUNDLE_RETRY: '3'
+      RAILS_ENV: test
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
       - run:
-          name: Which bundler?
-          command: bundle -v
-      - ruby/bundle-install
+          command: 'dockerize -wait tcp://localhost:3306 -timeout 1m'
+          name: Wait for DB
+      - run:
+          command: 'bundle exec rails db:schema:load --trace'
+          name: Database setup
+      - ruby/rspec-test
+orbs:
+  node: circleci/node@4.1.0
+  ruby: circleci/ruby@1.1.2
+version: 2.1
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - checking
+      - test:
+          requires:
+            - build
