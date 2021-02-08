@@ -1,14 +1,15 @@
 {
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true,
-    "ruby.useBundler": true, //run non-lint commands with bundle exec
-    "ruby.useLanguageServer": true, // use the internal language server (see below)
-    "ruby.lint": {
-      "rubocop": {
-        "useBundler": true // enable rubocop via bundler
-      }
-    },
-    "ruby.format": "rubocop",
-    "editor.formatOnSave": true // use rubocop for formatting
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "ruby.useBundler": true, //run non-lint commands with bundle exec
+  "ruby.useLanguageServer": true, // use the internal language server (see below)
+  "ruby.lint": {
+    "rubocop": {
+      "useBundler": true // enable rubocop via bundler
+    }
+  },
+  "ruby.format": "rubocop", // use rubocop for formatting
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
 }
