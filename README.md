@@ -43,6 +43,12 @@ $ docker-compose up -d --force-recreate database
 $ ./bin/setup
 ```
 
+* How to auto fix code style
+```
+$ bundle exec rubocop -A
+$ yarn run eslint --fix .
+```
+
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)
