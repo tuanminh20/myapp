@@ -7,15 +7,6 @@ jobs:
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
-  checking:
-    docker:
-      - image: 'circleci/ruby:2.7.2-node'
-    steps:
-      - checkout
-      - ruby/install-deps
-      - ruby/rubocop-check:
-          format: progress
-          label: Inspecting with Rubocop
   test:
     docker:
       - image: 'circleci/ruby:2.7.2-node'
@@ -51,7 +42,6 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - checking
       - test:
           requires:
             - build
