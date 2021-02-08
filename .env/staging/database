@@ -1,0 +1,4 @@
+MYSQL_ROOT_PASSWORD=my-secret-pw
+MYSQL_DATABASE=seller_staging
+MYSQL_USER=ndh
+MYSQL_PASSWORD=ndhndhteam

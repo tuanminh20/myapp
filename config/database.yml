@@ -56,3 +56,9 @@ production:
   database: seller_production
   username: myapp
   password: <%= ENV['SELLER_DATABASE_PASSWORD'] %>
+
+staging:
+  <<: *default
+  database: <%= ENV['MYSQL_DATABASE'] %>
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
