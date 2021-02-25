@@ -1,0 +1,92 @@
+<div id="header">
+  <div class="topbar">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-2 col-lg-2 col-md-6 col-6 topbar_col--left">
+          <h1 id="logo">
+            <a href="#" title="Gossby">
+              <img src="<%= asset_path('logo.svg') %>" alt="Gossby">
+            </a>
+          </h1>
+          <a id="humbuger_icon" href="javascript:void(0)" rel="nofollow">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+        </div>
+        <div class="col-xl-6 col-lg-5 topbar_col--mid">
+          <div class="top_search">
+            <form action="https://gossby.com/en/catalog/frontend/search" id="top_search_frm">
+              <div class="input_wrap">
+                <input type="text" name="keywords" class="input_common input_common--medium top_search_input" placeholder="Enter here to search" value>
+                <button type="submit" class="top_search_btn">
+                  <i class="top_search_icon">
+                    <svg data-icon="osc-icon-search" viewBox="0 0 18 18">
+                      <use xlink:href="#osc-icon-search" />
+                    </svg>
+                  </i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-5 col-md-6 col-6 topbar_col--right">
+          <ul class="navigation_lst topbar_menu">
+            <li class="nav_item"><a href="#" title="Track order">Track order</a></li>
+            <li class="nav_item"><a href="/contact-us" title="Contact">Contact</a></li>
+          </ul>
+          <div class="choice_currency">
+            <div class="select_wrap select_common--small">
+              <select class="select_common" name="change_price" id="change_price">
+                <option value="USD" selected="selected">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="AUD">AUD</option>
+                <option value="CAD">CAD</option>
+              </select>
+              <ins>
+                <svg data-icon="osc-icon-arrow" viewBox="0 0 19 11">
+                  <use xlink:href="#osc-icon-arrow" />
+                </svg>
+              </ins>
+            </div>
+          </div>
+          <div class="topbar_group_btn search_bar_show_btn" id="search_bar_show_btn" style="display: flex;">
+            <i class="search_icon">
+              <svg data-icon="osc-icon-search" viewBox="0 0 18 18">
+                <use xlink:href="#osc-icon-search" />
+              </svg>
+            </i>
+          </div>
+          <div class="topbar_group_btn" id="cart-quantity-container">
+            <a class="topbar_btn topbar_btn--cart" href="#">
+              <i class="topbar_btn_icon">
+                <svg data-icon="osc-icon-cart-newUI" viewBox="0 0 24 23">
+                  <use xlink:href="#osc-icon-cart-newUI" />
+                </svg>
+              </i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render "layouts/navigation" if desktop? %>
+  <% unless desktop? %>
+    <div class="search_mobile" id="search_mobile">
+      <div class="search_mobile_inner container">
+        <form action="#" class="search_mobile_frm">
+          <button type="submit" class="search_mobile_submit">
+            <i class="search_mobile_icon">
+              <svg data-icon="osc-icon-search" viewBox="0 0 18 18">
+                <use xlink:href="#osc-icon-search" />
+              </svg>
+            </i>
+          </button>
+          <input type="text" name="keywords" class="input_common input_common--medium search_mobile_input" placeholder="Enter here to search">
+        </form>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,63 @@
+/* =================== BEGIN: PAGING =================== */
+.paging_lst {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paging_item {
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 0 5px;
+  min-width: 35px;
+  text-align: center;
+  height: 35px;
+  line-height: 35px;
+  border: solid 1px transparent;
+}
+
+.paging_item--next {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.paging_item--back {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.paging_item.current {
+  background: #6170f7;
+  color: #fff;
+}
+
+.paging_item--next svg {
+  width: 12px;
+}
+
+.paging_item--last svg {
+  width: 15px;
+}
+
+.paging_item--first {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  transform: rotate(180deg);
+
+  svg {
+    width: 15px;
+  }
+}
+
+.paging_item a {
+  display: block;
+  padding: 0 5px;
+
+  &:hover {
+    color: #6170f7;
+  }
+}
+
+/* =================== END: PAGING =================== */

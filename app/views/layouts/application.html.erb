@@ -11,6 +11,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/shared/common_svg_icons' %>
+    <div class="page_wrap">
+      <%= render 'layouts/header' %>
+      <%= yield %>
+      <%= render 'layouts/shared/scroll_top' %>
+      <%= render 'layouts/footer' %>
+    </div>
+    <%= render 'layouts/navigation' unless desktop? %>
   </body>
 </html>
