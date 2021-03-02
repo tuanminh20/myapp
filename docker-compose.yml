@@ -11,6 +11,43 @@ services:
     restart: always
     ports:
       - 3307:3306
+  websetup:
+    build: .
+    image: myapp
+    command: ["./wait-for", "--timeout=300", "database:3306", "--",
+              "bin/setup"]
+    env_file:
+      - .env/development/database
+      - .env/development/web
+    volumes:
+      - gem_cache:/gems
+    deploy:
+      restart_policy:
+        condition: none
+    depends_on:
+      - database
+  web:
+    build: .
+    image: myapp
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+      - gem_cache:/gems
+    env_file:
+      - .env/development/database
+      - .env/development/web
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=webpack_dev_server
+  webpack_dev_server:
+    build: .
+    image: myapp
+    command: ./bin/webpack-dev-server
+    ports:
+      - 3035:3035
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
 
 volumes:
   db_data:
+  gem_cache:
