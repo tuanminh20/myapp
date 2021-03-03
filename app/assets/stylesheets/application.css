@@ -20,4 +20,6 @@
  *= require breadcrumb
  *= require homepage
  *= require contact
+ *= require product_details
+ *= require pagination
  */
