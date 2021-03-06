@@ -1,3 +1,22 @@
+#page_home .page_home_container {
+  max-width: 100%;
+}
+
+@media (min-width:992px) {
+
+  #page_home .page_home_container.container-custom,
+  #page_home .page_home_container.container-small {
+    max-width: 960px
+  };
+}
+
+@media (min-width:1200px) {
+
+  #page_home .page_home_container.container-custom,
+  #page_home .page_home_container.container-small {
+    max-width: 1188px
+  };
+}
 /* ================ BEGIN: BLOCK =================== */
 @media (min-width: 992px) {
   .block_container {
