@@ -35,6 +35,8 @@ jobs:
 orbs:
   node: circleci/node@4.1.0
   ruby: circleci/ruby@1.1.2
+  aws-ecr: circleci/aws-ecr@6.15.3
+  aws-ecs: circleci/aws-ecs@2.0.0
 version: 2.1
 workflows:
   build_and_test:
@@ -43,3 +45,19 @@ workflows:
       - test:
           requires:
             - build
+  build-and-deploy:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          repo: '${MY_APP_PREFIX}'
+          tag: '${CIRCLE_SHA1}'
+          extra-build-args: '--build-arg SECRET_KEY_BASE=${SECRET_KEY_BASE}'
+          filters:
+            branches:
+              only:
+                - master
+      - aws-ecs/deploy-service-update:
+          cluster-name: '${MY_APP_PREFIX}-cluster'
+          container-image-name-updates: 'container=web,tag=${CIRCLE_SHA1}'
+          family: '${MY_APP_PREFIX}'
+          requires:
+            - aws-ecr/build-and-push-image
