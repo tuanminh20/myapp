@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_025649) do
+ActiveRecord::Schema.define(version: 2021_03_06_025631) do
 
   create_table "admin_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,4 +24,76 @@ ActiveRecord::Schema.define(version: 2021_02_06_025649) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "product_colors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.bigint "product_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_type_id"], name: "index_product_colors_on_product_type_id"
+  end
+
+  create_table "product_gallery_images", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "image"
+    t.bigint "product_id"
+    t.bigint "product_size_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_gallery_images_on_product_id"
+    t.index ["product_size_id"], name: "index_product_gallery_images_on_product_size_id"
+  end
+
+  create_table "product_mockups", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "front"
+    t.string "back"
+    t.bigint "product_id"
+    t.bigint "product_size_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_mockups_on_product_id"
+    t.index ["product_size_id"], name: "index_product_mockups_on_product_size_id"
+  end
+
+  create_table "product_prices", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.decimal "price", precision: 8, scale: 2
+    t.bigint "product_id"
+    t.bigint "priceable_id"
+    t.string "priceable_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["priceable_type", "priceable_id"], name: "index_product_prices_on_priceable_type_and_priceable_id"
+    t.index ["product_id"], name: "index_product_prices_on_product_id"
+  end
+
+  create_table "product_sizes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.bigint "product_color_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_color_id"], name: "index_product_sizes_on_product_color_id"
+  end
+
+  create_table "product_types", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "thumbnail"
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_types_on_product_id"
+  end
+
+  create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "product_colors", "product_types"
+  add_foreign_key "product_gallery_images", "product_sizes"
+  add_foreign_key "product_gallery_images", "products"
+  add_foreign_key "product_mockups", "product_sizes"
+  add_foreign_key "product_mockups", "products"
+  add_foreign_key "product_prices", "products"
+  add_foreign_key "product_sizes", "product_colors"
+  add_foreign_key "product_types", "products"
 end

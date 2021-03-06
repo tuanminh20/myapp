@@ -50,6 +50,7 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'spring'
+  gem 'annotate'
 end
 
 group :development, :test do
