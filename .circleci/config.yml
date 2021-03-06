@@ -15,8 +15,6 @@ jobs:
         environment:
           MYSQL_ROOT_PASSWORD: my-secret-pw
           MYSQL_DATABASE: seller_test
-          MYSQL_USER: ndh
-          MYSQL_PASSWORD: ndhndhteam
 
     environment:
       BUNDLE_JOBS: '3'
