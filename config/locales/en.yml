@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  no_permission: "You don’t have permission to access!"
+  base:
+    header:
+      log_out: Log out

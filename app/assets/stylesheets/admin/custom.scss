@@ -1,0 +1,10 @@
+#flash-messages {
+  position: fixed;
+  z-index: 999;
+  top: 60px;
+  right: 2px;
+  opacity: 0.95;
+  .alert {
+    min-width: 355px;
+  }
+}

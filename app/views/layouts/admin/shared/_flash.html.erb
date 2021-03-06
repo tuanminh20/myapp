@@ -1,0 +1,9 @@
+<div id="flash-messages">
+  <% Settings.flash.each do |key, value| %>
+    <% next if flash[key].blank? %>
+    <div class="alert animated fadeInDown alert-dismissible fade show <%= value %>" role="alert">
+      <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+      <%= content_for?(:flash_errors) ? yield(:flash_errors) : flash[key] %>
+    </div>
+  <% end %>
+</div>

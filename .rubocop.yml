@@ -102,6 +102,7 @@ Metrics/BlockLength:
     - '**/*.rake'
     - 'spec/**/*.rb'
     - '*.gemspec'
+  Max: 30
 
 Metrics/MethodLength:
   Max: 20

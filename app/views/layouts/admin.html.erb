@@ -10,6 +10,8 @@
   </head>
 
   <body data-scrollbar-auto-hide="n" class="hold-transition sidebar-mini layout-fixed">
+    <%= render "layouts/admin/shared/flash" %>
+    <% if admin_user_signed_in? %>
       <div class="wrapper">
         <%= render "admin/base/header" %>
         <%= render "admin/base/sidebar" %>
@@ -41,5 +43,8 @@
         <%= render "admin/base/footer" %>
         <%= render "admin/base/control_sidebar" %>
       <div>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
