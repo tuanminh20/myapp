@@ -10,8 +10,7 @@
 #  updated_at :datetime         not null
 #
 class Product < ApplicationRecord
-  has_many :product_types
-  has_many :product_prices
-  has_many :product_mockups
-  has_many :product_gallery_images
+  has_many :product_variant_options, dependent: :destroy
+  has_many :product_variants, dependent: :destroy
+  has_many :product_variant_images, dependent: :destroy
 end
