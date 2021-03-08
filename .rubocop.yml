@@ -9,11 +9,6 @@
 #
 # See https://docs.rubocop.org/rubocop/configuration
 
-require:
-  - rubocop-rails
-  - rubocop-rspec
-  - rubocop-performance
-
 AllCops:
   NewCops: enable
   Exclude:
